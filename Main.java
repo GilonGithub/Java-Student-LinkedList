@@ -29,23 +29,18 @@ public class Main {
 				case 3: Student s1 = findStudent(studentList);
 						removeStudent(s1, studentList);
 						break;
-				
+				case 4: System.out.println("Thank you! Good bye!"); break;
 			}
 		} while(userChoice != 4);
 
 	}
-
-
 
 	private static void removeStudent(Student s1, LinkedList<Student> studentList) {
 		
 		studentList.remove(s1);
 		System.out.println("\nThe following student has been removed from the list: \n" + s1);
 		
-		
 	}
-
-
 
 	private static Student findStudent(LinkedList<Student> studentList) {
 		
@@ -72,7 +67,6 @@ public class Main {
 		return null;
 	}
 
-
 	private static void displayStudentList(LinkedList<Student> studentList) {
 		Iterator<Student> it = studentList.iterator();
 		
@@ -98,7 +92,8 @@ public class Main {
 
 		Student s = new Student(id, email, fullName);
 		
-		System.out.println("New student has been added!\n");
+		System.out.println("\nThe following student has been added!\n");
+		System.out.println(s);
 		
 		return s;
 		
@@ -111,14 +106,19 @@ public class Main {
 		boolean invalidInput;
 		
 		do {
-			System.out.println("Select an option from the menu:"
-								+ "\n1. Add a student"
-								+ "\n2. Display a student"
-								+ "\n3. Remove a student"
-								+ "\n4. Quit");
+			System.out.println("---------MENU---------"
+								+ "\n 1 - Add a student"
+								+ "\n 2 - Display the student list"
+								+ "\n 3 - Remove a student"
+								+ "\n 4 - Quit"
+								+ "\n----------------------"
+								+ "\n\nSelected Option: ");
 			
 			userChoice = input.nextInt();
 			invalidInput = userChoice < 5 && userChoice > 0 ? false : true;
+			
+			if(invalidInput)
+				System.err.println("\nInvalid! Pick again.\n");
 			
 		} while(invalidInput);
 		
