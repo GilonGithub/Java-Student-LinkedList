@@ -7,13 +7,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
-//		Student s1 = new Student(1001, "first@first.com", "Jericho David");
-//		Student s2 = new Student(1002, "first@first.com", "Jeremiah Jase");
-//		Student s3 = new Student(1003, "first@first.com", "George Castro");
-//		Student s4 = new Student(-1, "first@first.com", "Janelle Pierzina");
-//		Student s5 = new Student(1005, "first@first.com", "Howie Gordon");
-//		
+				
 		int userChoice;
 		LinkedList<Student> studentList = new LinkedList<>();
 		
@@ -21,13 +15,12 @@ public class Main {
 			userChoice = showOptions();
 			
 			switch(userChoice) {
-				case 1: Student s = addStudent(); 
-						studentList.add(s);
+				case 1: addStudent(studentList);
 						break;
 				case 2: displayStudentList(studentList); 
 						break;
-				case 3: Student s1 = findStudent(studentList);
-						removeStudent(s1, studentList);
+				case 3: Student s = findStudent(studentList);
+						removeStudent(s, studentList);
 						break;
 				case 4: System.out.println("Thank you! Good bye!"); break;
 			}
@@ -68,17 +61,22 @@ public class Main {
 	}
 
 	private static void displayStudentList(LinkedList<Student> studentList) {
-		Iterator<Student> it = studentList.iterator();
 		
-		while(it.hasNext()) {
-			System.out.println(it.next());
+		if(!studentList.isEmpty()) {
+			Iterator<Student> it = studentList.iterator();
+			
+			System.out.println("\nLIST OF STUDENTS\n");
+			while(it.hasNext()) {
+				System.out.println(it.next());
+			}
+		} else {
+			System.err.println("\nThere are no students in the list!\n");
 		}
 		
 	}
 
-	private static Student addStudent() {
+	private static Student addStudent(LinkedList<Student> studentList) {
 		Scanner input = new Scanner(System.in);
-		Scanner input2 = new Scanner(System.in);
 		
 		System.out.println("\nEnter the student ID: ");
 		int id = input.nextInt();
@@ -92,6 +90,7 @@ public class Main {
 
 		Student s = new Student(id, email, fullName);
 		
+		studentList.add(s);
 		System.out.println("\nThe following student has been added!\n");
 		System.out.println(s);
 		
